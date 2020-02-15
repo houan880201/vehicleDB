@@ -1,0 +1,8 @@
+howard/vehicle/manager/model/Vehicle.class
+howard/vehicle/manager/dao/VehicleDAOImpl$2.class
+howard/vehicle/manager/controller/MainController.class
+howard/vehicle/manager/config/WebAppInitializer.class
+howard/vehicle/manager/dao/VehicleDAOImpl$1.class
+howard/vehicle/manager/dao/VehicleDAO.class
+howard/vehicle/manager/dao/VehicleDAOImpl.class
+howard/vehicle/manager/config/SpringMvcConfig.class

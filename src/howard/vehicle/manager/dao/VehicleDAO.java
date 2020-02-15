@@ -12,5 +12,4 @@ public interface VehicleDAO {
 	public int update(Vehicle vehicle);
 	public int delete(Integer id);
 	public List<Vehicle> getVehicles();
-
 }

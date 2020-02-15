@@ -21,23 +21,34 @@ public class VehicleDAOImpl implements VehicleDAO {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
+	
+	/* Insert a vehicle into database entry*/
 	@Override
 	public int save(Vehicle vehicle) {
-		// TODO Auto-generated method stub
+
 		String sql = "INSERT INTO vehicle (Year, Make, Model) VALUES (?,?,?)";
-		return jdbcTemplate.update(sql, vehicle.getYear(), 
-				vehicle.getMake(), vehicle.getModel());	
+		
+		int res = 0;
+		try {
+			res = jdbcTemplate.update(sql, vehicle.getYear(), vehicle.getMake(), vehicle.getModel());	
+			return res;
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
+	
+	
+	/* Get a specific vehicle entry from database given ID */
 	@Override
 	public Vehicle get(Integer id) {
-		// TODO Auto-generated method stub 
+
 		String sql = "SELECT * FROM vehicle WHERE Id=" + id;
 		ResultSetExtractor<Vehicle> extractor = new ResultSetExtractor<Vehicle>() {
 
 			@Override
 			public Vehicle extractData(ResultSet rs) throws SQLException, DataAccessException {
-				// TODO Auto-generated method stub
+
 				if(rs.next()) {
 					int id = rs.getInt("Id");
 					int year = rs.getInt("Year");
@@ -54,24 +65,31 @@ public class VehicleDAOImpl implements VehicleDAO {
 		return jdbcTemplate.query(sql, extractor) ;
 	}
 
+	
+	
+	/* Update vehicle given an vehicle Object */
 	@Override
 	public int update(Vehicle vehicle) {
-		// TODO Auto-generated method stub
+
 		String sql = "UPDATE vehicle SET Year=?, Make=?, Model=? WHERE Id=?";
 		return jdbcTemplate.update(sql, vehicle.getYear(), 
 				vehicle.getMake(), vehicle.getModel(), vehicle.getId());	
 	}
 
+	
+	/* Delete specific vehicle given ID */
 	@Override
 	public int delete(Integer id) {
-		// TODO Auto-generated method stub
+
 		String sql = "DELETE FROM vehicle WHERE Id=" + id;
 		return jdbcTemplate.update(sql);
 	}
 
+	
+	/* Return all lists of vehicles from database */
 	@Override
 	public List<Vehicle> getVehicles() {
-		// TODO Auto-generated method stub
+
 		String sql = "SELECT * FROM vehicle";
 		RowMapper<Vehicle> vehicleMapper = new RowMapper<Vehicle>() {
 
@@ -88,5 +106,6 @@ public class VehicleDAOImpl implements VehicleDAO {
 		};
 		return jdbcTemplate.query(sql, vehicleMapper);
 	}
+	
 
 }
