@@ -1,2 +1,4 @@
-Uses remotemysql.com to sign up for the remote database
-Uses phpAdmin to help visualize the database
+
+
+This project uses AWS RDS to host the mysql database server.
+The client side JSP project is deployed on heroku.
